@@ -1,13 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 // env config
 require('dotenv').config();
 const app = express();
-app.use(cors());
 
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', req.get('origin'));
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
+    next();
+});
 
 // requiring local modules
 const open = require('./Routes/open');
