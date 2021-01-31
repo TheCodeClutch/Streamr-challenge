@@ -163,6 +163,12 @@ router.post('/interested', middleware, (request, response) => {
                     })
                         .then(resp => {
                             console.log('Res2 :', resp)
+                            client.publish('0xd5c5cf8f6c9357de19cae48f101641f54845bc82/interest-products', {
+                                NAME: request.decode.name,
+                                TITLE: doc.TITLE,
+                                CITY: request.decode.city,
+                                STATE: request.decode.state
+                            })
                             message(resp.PHONE_NUMBER, `${request.decode.name} is interested in purchasing the product named - ${doc.TITLE}. ${request.decode.name} is from ${request.decode.city}, ${request.decode.state}. You can contact ${request.decode.name} at +${request.decode.phoneNumber}. \n NOTE: Do not share any OTP or PIN while transacting.`)
                                 .then(res => {
                                     response.status(200).json({
