@@ -42,7 +42,7 @@ router.post('/visit', (req, res) => {
   client.publish('0xd5c5cf8f6c9357de19cae48f101641f54845bc82/visits', {
       userAgent: ua,
       latitude: req.body.latitude,
-      humidity: req.body.longitude,
+      longitude: req.body.longitude,
   })
   res.json({
     message: 'Successfully registered visit'
