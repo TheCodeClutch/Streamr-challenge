@@ -3,7 +3,7 @@ const axios = require("axios");
 const StreamrClient = require('streamr-client')
 const parser = require('ua-parser-js');
 
-const streamr = new StreamrClient({
+const client = new StreamrClient({
     auth: {
         privateKey: process.env.STREAMR_PKEY,
     },
