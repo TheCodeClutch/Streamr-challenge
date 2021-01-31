@@ -37,7 +37,7 @@ router.get('/news', (request, response) => {
   })
 })
 
-router.get('/visit', (req, res) => {
+router.post('/visit', (req, res) => {
   const ua = parser(req.headers['user-agent']);
   client.publish('0xd5c5cf8f6c9357de19cae48f101641f54845bc82/visits', {
       userAgent: ua,
