@@ -160,7 +160,7 @@ router.post('/interested', middleware, (request, response) => {
                         }
                     })
                         .then(resp => {
-                            client.publish('0xd5c5cf8f6c9357de19cae48f101641f54845bc82/interest-services', {
+                            client.publish('0xd5c5cf8f6c9357de19cae48f101641f54845bc82/interest-service', {
                                 NAME: request.decode.name,
                                 TITLE: doc.TITLE,
                                 CITY: request.decode.city,
