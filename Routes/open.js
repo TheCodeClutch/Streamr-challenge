@@ -49,16 +49,5 @@ router.get('/visit', (req, res) => {
   })
 })
 
-router.get('/sos', (req, res) => {
-  const ua = parser(req.headers['user-agent']);
-  client.publish('0xd5c5cf8f6c9357de19cae48f101641f54845bc82/sos', {
-      userAgent: ua,
-      latitude: req.body.latitude,
-      humidity: req.body.longitude,
-  })
-  res.json({
-    message: 'Successfully registered SOS'
-  })
-})
 
 module.exports = router;
