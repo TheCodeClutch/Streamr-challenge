@@ -6,6 +6,13 @@ const middleware = require('../Helpers/auth-middleware').session;
 const upload = require('./multer')
 const cloudinary = require('./cloudinary')
 const fs = require('fs')
+const StreamrClient = require('streamr-client')
+
+const client = new StreamrClient({
+    auth: {
+        privateKey: process.env.STREAMR_PKEY,
+    },
+})
 
 // TO ADD PRODUCT
 router.post('/add', middleware, upload.any('image'), async (request, response) => {
@@ -22,6 +29,17 @@ router.post('/add', middleware, upload.any('image'), async (request, response) =
         fs.unlinkSync(path)
     }
     console.log(urls)
+    client.publish('0xd5c5cf8f6c9357de19cae48f101641f54845bc82/products', {
+        TITLE: request.body.title,
+        POSTED_BY: request.decode.name,
+        DESCRIPTION: request.body.description,
+        CATEGORY: request.body.category,
+        PRICE: request.body.price,
+        NEGOTIABLE: request.body.negotiable,
+        PRODUCT_ID: productId,
+        CITY: request.decode.city,
+        STATE: request.decode.state
+    })
     const product = new Products({
         TITLE: request.body.title,
         POSTED_BY_PIC: request.decode.profile_pic,

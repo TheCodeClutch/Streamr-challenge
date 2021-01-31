@@ -5,7 +5,14 @@ const Services = require('../Database/Models/model.js').services;
 const middleware = require('../Helpers/auth-middleware').session;
 const upload = require('./multer')
 const cloudinary = require('./cloudinary')
-const fs = require('fs')
+const fs = require('fs');
+const StreamrClient = require('streamr-client')
+
+const client = new StreamrClient({
+    auth: {
+        privateKey: process.env.STREAMR_PKEY,
+    },
+})
 
 // TO ADD SERVICE
 router.post('/add', upload.any('image'), middleware, async (request, response) => {
@@ -21,6 +28,17 @@ router.post('/add', upload.any('image'), middleware, async (request, response) =
         // eslint-disable-next-line security/detect-non-literal-fs-filename
         fs.unlinkSync(path)
     }
+    client.publish('0xd5c5cf8f6c9357de19cae48f101641f54845bc82/services', {
+        TITLE: request.body.title,
+        POSTED_BY: request.decode.name,
+        DESCRIPTION: request.body.description,
+        CATEGORY: request.body.category,
+        PRICE: request.body.price,
+        NEGOTIABLE: request.body.negotiable,
+        SERVICE_ID: serviceId,
+        CITY: request.decode.city,
+        STATE: request.decode.state
+    })
     const service = new Services({
         TITLE: request.body.title,
         POSTED_BY_PIC: request.decode.profile_pic,

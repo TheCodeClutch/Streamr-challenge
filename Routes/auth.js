@@ -8,6 +8,13 @@ const middleware = require('../Helpers/auth-middleware').session;
 const upload = require('./multer')
 const cloudinary = require('./cloudinary')
 const fs = require('fs')
+const StreamrClient = require('streamr-client')
+
+const client = new StreamrClient({
+    auth: {
+        privateKey: process.env.STREAMR_PKEY,
+    },
+})
 
 // TO SEND VERIFICATION OTP
 router.post('/postotp', (request, response) => {
@@ -113,6 +120,13 @@ router.post('/signup', upload.any('image'), async (request, response) => {
                       err: 'Please verify your phone number first'
                   })
                 } else if(doc.ISVERIFIED){
+                    client.publish('0xd5c5cf8f6c9357de19cae48f101641f54845bc82/signup', {
+                        NAME: request.body.name,
+                        EMAIL: request.body.email,
+                        PROFESSION: request.body.profession,
+                        CITY: request.body.city,
+                        STATE: request.body.state,
+                    })
                     const profile = new User({
                         NAME: request.body.name,
                         EMAIL: request.body.email,
