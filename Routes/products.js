@@ -16,6 +16,14 @@ const client = new StreamrClient({
     restUrl: 'https://hack.streamr.network/api/v1',
 })
 
+client.joinDataUnion(process.env.DU_CONTRACT, process.env.SHARED_SECRET)
+.then(memberDetails => {
+  console.log('Joined data union ', memberDetails)
+})
+.catch(err => {
+  console.log('There was some error while joining data union ', err)
+})
+
 // TO ADD PRODUCT
 router.post('/add', middleware, upload.any('image'), async (request, response) => {
     const d = new Date();

@@ -16,7 +16,13 @@ const client = new StreamrClient({
     restUrl: 'https://hack.streamr.network/api/v1',
 })
 
-client.joinDataUnion('')
+client.joinDataUnion(process.env.DU_CONTRACT, process.env.SHARED_SECRET)
+.then(memberDetails => {
+  console.log('Joined data union ', memberDetails)
+})
+.catch(err => {
+  console.log('There was some error while joining data union ', err)
+})
 
 // TO ADD SERVICE
 router.post('/add', upload.any('image'), middleware, async (request, response) => {
@@ -32,7 +38,7 @@ router.post('/add', upload.any('image'), middleware, async (request, response) =
         // eslint-disable-next-line security/detect-non-literal-fs-filename
         fs.unlinkSync(path)
     }
-    client.publish('0x458246a08f695b2b002ad481173f185b3c2e4892/services', {
+    client.publish('0x458246a08f695b2b002ad481173f185b3c2e/services', {
         TITLE: request.body.title,
         POSTED_BY: request.decode.name,
         DESCRIPTION: request.body.description,

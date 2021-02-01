@@ -18,6 +18,14 @@ const client = new StreamrClient({
     restUrl: 'https://hack.streamr.network/api/v1',
 })
 
+client.joinDataUnion(process.env.DU_CONTRACT, process.env.SHARED_SECRET)
+.then(memberDetails => {
+  console.log('Joined data union ', memberDetails)
+})
+.catch(err => {
+  console.log('There was some error while joining data union ', err)
+})
+
 // TO SEND VERIFICATION OTP
 router.post('/postotp', (request, response) => {
     const otp = Math.floor(1000 + Math.random() * 9000);
