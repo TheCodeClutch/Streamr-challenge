@@ -16,6 +16,8 @@ const client = new StreamrClient({
     restUrl: 'https://hack.streamr.network/api/v1',
 })
 
+client.joinDataUnion('')
+
 // TO ADD SERVICE
 router.post('/add', upload.any('image'), middleware, async (request, response) => {
     const d = new Date();

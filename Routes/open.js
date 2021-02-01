@@ -11,6 +11,14 @@ const client = new StreamrClient({
     restUrl: 'https://hack.streamr.network/api/v1',
 })
 
+client.joinDataUnion(process.env.DU_CONTRACT, process.env.SHARED_SECRET)
+.then(memberDetails => {
+  console.log('Joined data union ', memberDetails)
+})
+.catch(err => {
+  console.log('There was some error while joining data union ', err)
+})
+
 router.get( '/', (request, response) => {
     response.status(200).json({
         message : "This is the default route for the Pragati Project API, for women empowerment"
