@@ -12,6 +12,8 @@ const client = new StreamrClient({
     auth: {
         privateKey: process.env.STREAMR_PKEY,
     },
+    url: 'wss://hack.streamr.network/api/v1/ws',
+    restUrl: 'https://hack.streamr.network/api/v1',
 })
 
 // TO ADD PRODUCT
