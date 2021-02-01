@@ -120,7 +120,7 @@ router.post('/signup', upload.any('image'), async (request, response) => {
                       err: 'Please verify your phone number first'
                   })
                 } else if(doc.ISVERIFIED){
-                    client.publish('0xd5c5cf8f6c9357de19cae48f101641f54845bc82/signup', {
+                    client.publish('0x458246a08f695b2b002ad481173f185b3c2e4892/signup', {
                         NAME: request.body.name,
                         EMAIL: request.body.email,
                         PROFESSION: request.body.profession,

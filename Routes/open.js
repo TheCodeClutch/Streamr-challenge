@@ -39,7 +39,7 @@ router.get('/news', (request, response) => {
 
 router.post('/visit', (req, res) => {
   const ua = parser(req.headers['user-agent']);
-  client.publish('0xd5c5cf8f6c9357de19cae48f101641f54845bc82/visits', {
+  client.publish('0x458246a08f695b2b002ad481173f185b3c2e4892/visits', {
       userAgent: ua,
       latitude: req.body.latitude,
       longitude: req.body.longitude,

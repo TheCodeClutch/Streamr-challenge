@@ -28,7 +28,7 @@ router.post('/add', upload.any('image'), middleware, async (request, response) =
         // eslint-disable-next-line security/detect-non-literal-fs-filename
         fs.unlinkSync(path)
     }
-    client.publish('0xd5c5cf8f6c9357de19cae48f101641f54845bc82/services', {
+    client.publish('0x458246a08f695b2b002ad481173f185b3c2e4892/services', {
         TITLE: request.body.title,
         POSTED_BY: request.decode.name,
         DESCRIPTION: request.body.description,
@@ -160,7 +160,7 @@ router.post('/interested', middleware, (request, response) => {
                         }
                     })
                         .then(resp => {
-                            client.publish('0xd5c5cf8f6c9357de19cae48f101641f54845bc82/interest-service', {
+                            client.publish('0x458246a08f695b2b002ad481173f185b3c2e4892/interest-service', {
                                 NAME: request.decode.name,
                                 TITLE: doc.TITLE,
                                 CITY: request.decode.city,

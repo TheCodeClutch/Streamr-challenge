@@ -29,7 +29,7 @@ router.post('/add', middleware, upload.any('image'), async (request, response) =
         fs.unlinkSync(path)
     }
     console.log(urls)
-    client.publish('0xd5c5cf8f6c9357de19cae48f101641f54845bc82/products', {
+    client.publish('0x458246a08f695b2b002ad481173f185b3c2e4892/products', {
         TITLE: request.body.title,
         POSTED_BY: request.decode.name,
         DESCRIPTION: request.body.description,
@@ -163,7 +163,7 @@ router.post('/interested', middleware, (request, response) => {
                     })
                         .then(resp => {
                             console.log('Res2 :', resp)
-                            client.publish('0xd5c5cf8f6c9357de19cae48f101641f54845bc82/interest-products', {
+                            client.publish('0x458246a08f695b2b002ad481173f185b3c2e4892/interest-products', {
                                 NAME: request.decode.name,
                                 TITLE: doc.TITLE,
                                 CITY: request.decode.city,
