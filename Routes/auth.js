@@ -8,23 +8,8 @@ const middleware = require('../Helpers/auth-middleware').session;
 const upload = require('./multer')
 const cloudinary = require('./cloudinary')
 const fs = require('fs')
-const StreamrClient = require('streamr-client')
+const client = require("./streamr-config")
 
-const client = new StreamrClient({
-    auth: {
-        privateKey: process.env.STREAMR_PKEY,
-    },
-    url: 'wss://hack.streamr.network/api/v1/ws',
-    restUrl: 'https://hack.streamr.network/api/v1',
-})
-
-client.joinDataUnion(process.env.DU_CONTRACT, process.env.SHARED_SECRET)
-.then(memberDetails => {
-  console.log('Joined data union ', memberDetails)
-})
-.catch(err => {
-  console.log('There was some error while joining data union ', err)
-})
 
 // TO SEND VERIFICATION OTP
 router.post('/postotp', (request, response) => {

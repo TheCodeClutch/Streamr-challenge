@@ -1,23 +1,7 @@
 const router = require("express").Router();
 const axios = require("axios");
-const StreamrClient = require('streamr-client')
 const parser = require('ua-parser-js');
-
-const client = new StreamrClient({
-    auth: {
-        privateKey: process.env.STREAMR_PKEY,
-    },
-    url: 'wss://hack.streamr.network/api/v1/ws',
-    restUrl: 'https://hack.streamr.network/api/v1',
-})
-
-client.joinDataUnion(process.env.DU_CONTRACT, process.env.SHARED_SECRET)
-.then(memberDetails => {
-  console.log('Joined data union ', memberDetails)
-})
-.catch(err => {
-  console.log('There was some error while joining data union ', err)
-})
+const client = require("./streamr-config")
 
 router.get( '/', (request, response) => {
     response.status(200).json({
