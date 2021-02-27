@@ -64,8 +64,11 @@ router.post('/register/complaints', (request, response) => {
     const description = request.body?.description;
     const latitude = request.body?.latitude;
     const longitude = request.body?.longitude;
+    const street = request.body?.street;
+    const city = request.body?.city;
+    const state = request.body?.state;
 
-    if(gender && age && type && description && latitude && longitude) {
+    if(gender && age && type && description && latitude && longitude && street && city && state) {
 	    client.publish('0x458246a08f695b2b002ad481173f185b3c2e4892/crime-record', {
             gender,
             age,
@@ -73,6 +76,9 @@ router.post('/register/complaints', (request, response) => {
             description,
             latitude,
             longitude,
+            street,
+            city,
+            state
          })
 
         const data = new Complaints({

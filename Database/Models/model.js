@@ -212,6 +212,15 @@ const complaints = new mongoose.Schema({
   },
   LONGITUDE: {
     type: Number
+  },
+  STREET: {
+    type: String
+  },
+  CITY: {
+    type: String
+  },
+  STATE: {
+    type: String
   }
 })
 
