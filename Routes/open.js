@@ -69,7 +69,7 @@ router.post('/register/complaints', (request, response) => {
     const state = request.body?.state;
 
     if(gender && age && type && description && latitude && longitude && street && city && state) {
-	    client.publish('0x458246a08f695b2b002ad481173f185b3c2e4892/crime-record', {
+	    client.publish('0x458246a08f695b2b002ad481173f185b3c2e4892/crime-data', {
             gender,
             age,
             type,
