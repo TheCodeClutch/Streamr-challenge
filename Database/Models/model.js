@@ -194,6 +194,28 @@ const otp = new mongoose.Schema({
   }
 });
 
+const complaints = new mongoose.Schema({
+  GENDER: {
+    type: String
+  },
+  AGE: {
+    type: String
+  },
+  TYPE: {
+    type: String
+  },
+  DESCRIPTION: {
+    type: String
+  },
+  LATITUDE: {
+    type: Number
+  },
+  LONGITUDE: {
+    type: Number
+  }
+})
+
+
 products.plugin(fuzzySearch, { fields: ['TITLE', 'CATEGORY'] })
 services.plugin(fuzzySearch, { fields: ['TITLE', 'CATEGORY'] })
 askDesk.plugin(fuzzySearch, { fields: ['QUESTION'] })
@@ -202,3 +224,4 @@ module.exports.products = mongoose.model('products', products);
 module.exports.services = mongoose.model('services', services);
 module.exports.askDesk = mongoose.model('askDesk', askDesk);
 module.exports.otp = mongoose.model('otp', otp);
+module.exports.complaints = mongoose.model('complaints',complaints);
