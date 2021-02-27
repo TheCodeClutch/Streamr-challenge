@@ -87,7 +87,10 @@ router.post('/register/complaints', (request, response) => {
             TYPE: type,
             DESCRIPTION: description,
             LATITUDE: latitude,
-            LONGITUDE: longitude
+            LONGITUDE: longitude,
+            STREET: street,
+            CITY: city,
+            STATE: state
         })
         data.save((err) => {
             if(err){
