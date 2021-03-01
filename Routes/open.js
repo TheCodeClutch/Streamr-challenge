@@ -47,7 +47,7 @@ router.post('/visit', (req, res) => {
 
 router.post('/register/sos', (req, res) => {
     const ua = parser(req.headers['user-agent']);
-    client.publish('0x458246a08f695b2b002ad481173f185b3c2e4892/sos-usage', {
+    client.publish('0x458246a08f695b2b002ad481173f185b3c2e4892/sos-data', {
         userAgent: ua,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
